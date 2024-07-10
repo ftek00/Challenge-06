@@ -53,13 +53,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function displayCurrentWeather(weatherData) {
     currentWeather.innerHTML = `
-        <p style="font-size: 24px; font-weight: bold;">${weatherData.city}</p>
-        <p style="font-size: 24px;">${weatherData.date}</p>
-        <p>Temp: ${weatherData.temperature}°C</p>
-        <p>Humidity: ${weatherData.humidity}%</p>
-        <p>Wind Speed: ${weatherData.windSpeed} km/h</p>
-        <p><i class="fas fa-${weatherData.icon}"></i></p>
-   `;
+      <p style="font-size: 24px; font-weight: bold;">${weatherData.city}</p>
+      <p style="font-size: 24px;">${weatherData.date}</p>
+      <p>Temp: ${weatherData.temperature}°C</p>
+      <p>Humidity: ${weatherData.humidity}%</p>
+      <p>Wind Speed: ${weatherData.windSpeed} km/h</p>
+      <p><i class="fas fa-${weatherData.icon}"></i></p>
+ `;
   }
 
   function displayFutureWeather(forecastData) {
@@ -80,16 +80,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     nextFiveDays.forEach((day) => {
       forecastHTML += `
-              <div>
-                  <p style="font-size: 20px;">${new Date(
-                    day.dt * 1000
-                  ).toLocaleDateString()}</p>
-                  <p>Temperature: ${Math.round(day.main.temp - 273.15)}°C</p>
-                  <p>Humidity: ${day.main.humidity}%</p>
-                  <p>Wind Speed: ${day.wind.speed} km/h</p>
-                  <p><i class="fas fa-${day.weather[0].icon}"></i></p>
-              </div>
-          `;
+            <div>
+                <p style="font-size: 20px;">${new Date(
+                  day.dt * 1000
+                ).toLocaleDateString()}</p>
+                <p>Temperature: ${Math.round(day.main.temp - 273.15)}°C</p>
+                <p>Humidity: ${day.main.humidity}%</p>
+                <p>Wind Speed: ${day.wind.speed} km/h</p>
+                <p><i class="fas fa-${day.weather[0].icon}"></i></p>
+            </div>
+        `;
     });
 
     futureWeather.innerHTML = forecastHTML;
@@ -118,6 +118,10 @@ document.addEventListener("DOMContentLoaded", function () {
       searchHistoryContainer.appendChild(lineBreak);
     });
   }
+
+  displaySearchHistory();
+});
+
 
   displaySearchHistory();
 });
