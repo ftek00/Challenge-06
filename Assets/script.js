@@ -121,7 +121,3 @@ document.addEventListener("DOMContentLoaded", function () {
 
   displaySearchHistory();
 });
-
-
-  displaySearchHistory();
-});
