@@ -43,4 +43,10 @@ document.addEventListener("DOMContentLoaded", function () {
         console.error("Error fetching data:", error);
       });
   }
-});
+  cityButton.addEventListener("click", function () {
+    const cityName = cityInput.value;
+    getWeather(cityName);
+    saveToLocalStorage(cityName);
+    displaySearchHistory();
+  });
+
