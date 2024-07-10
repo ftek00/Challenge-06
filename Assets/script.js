@@ -49,4 +49,14 @@ document.addEventListener("DOMContentLoaded", function () {
     saveToLocalStorage(cityName);
     displaySearchHistory();
   });
+  function displayCurrentWeather(weatherData) {
+    currentWeather.innerHTML = `
+        <p style="font-size: 24px; font-weight: bold;">${weatherData.city}</p>
+        <p style="font-size: 24px;">${weatherData.date}</p>
+        <p>Temp: ${weatherData.temperature}°C</p>
+        <p>Humidity: ${weatherData.humidity}%</p>
+        <p>Wind Speed: ${weatherData.windSpeed} km/h</p>
+        <p><i class="fas fa-${weatherData.icon}"></i></p>
+   `;
+  }
 
