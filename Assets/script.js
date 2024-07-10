@@ -59,4 +59,32 @@ document.addEventListener("DOMContentLoaded", function () {
         <p><i class="fas fa-${weatherData.icon}"></i></p>
    `;
   }
+  function displayFutureWeather(forecastData) {
+    let forecastHTML = "";
+    const currentDate = new Date();
+    const nextFiveDays = forecastData
+      .filter((day) => {
+        const dayDate = new Date(day.dt * 1000);
+        return dayDate.getDate() !== currentDate.getDate();
+      })
+      .slice(0, 5);
 
+    if (nextFiveDays.length < 5) {
+      const remainingDays = 5 - nextFiveDays.length;
+      const additionalDays = forecastData.slice(0, remainingDays);
+      nextFiveDays.push(...additionalDays);
+    }
+
+    nextFiveDays.forEach((day) => {
+      forecastHTML += `
+              <div>
+                  <p style="font-size: 20px;">${new Date(
+                    day.dt * 1000
+                  ).toLocaleDateString()}</p>
+                  <p>Temperature: ${Math.round(day.main.temp - 273.15)}°C</p>
+                  <p>Humidity: ${day.main.humidity}%</p>
+                  <p>Wind Speed: ${day.wind.speed} km/h</p>
+                  <p><i class="fas fa-${day.weather[0].icon}"></i></p>
+              </div>
+          `;
+    });
