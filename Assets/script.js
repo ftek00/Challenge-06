@@ -88,3 +88,31 @@ document.addEventListener("DOMContentLoaded", function () {
               </div>
           `;
     });
+    futureWeather.innerHTML = forecastHTML;
+  }
+  function saveToLocalStorage(searchTerm) {
+    let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
+    searchHistory.push(searchTerm);
+    localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+  }
+
+  function displaySearchHistory() {
+    let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
+
+    searchHistoryContainer.innerHTML = "";
+
+    searchHistory.forEach((item) => {
+      const button = document.createElement("button");
+      button.textContent = item;
+      button.addEventListener("click", () => {
+        getWeather(item);
+      });
+      const lineBreak = document.createElement("br");
+
+      searchHistoryContainer.appendChild(button);
+      searchHistoryContainer.appendChild(lineBreak);
+    });
+  }
+
+  displaySearchHistory();
+});
