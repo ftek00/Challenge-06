@@ -43,12 +43,14 @@ document.addEventListener("DOMContentLoaded", function () {
         console.error("Error fetching data:", error);
       });
   }
+
   cityButton.addEventListener("click", function () {
     const cityName = cityInput.value;
     getWeather(cityName);
     saveToLocalStorage(cityName);
     displaySearchHistory();
   });
+
   function displayCurrentWeather(weatherData) {
     currentWeather.innerHTML = `
         <p style="font-size: 24px; font-weight: bold;">${weatherData.city}</p>
@@ -59,6 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <p><i class="fas fa-${weatherData.icon}"></i></p>
    `;
   }
+
   function displayFutureWeather(forecastData) {
     let forecastHTML = "";
     const currentDate = new Date();
@@ -88,8 +91,10 @@ document.addEventListener("DOMContentLoaded", function () {
               </div>
           `;
     });
+
     futureWeather.innerHTML = forecastHTML;
   }
+
   function saveToLocalStorage(searchTerm) {
     let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
     searchHistory.push(searchTerm);
